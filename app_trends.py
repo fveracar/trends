@@ -5,7 +5,6 @@ import streamlit as st
 
 st.set_page_config(
     page_title='Trends | Vocento',
-    layout="wide",  #que ocupe el ancho completo
 )
 
 st.header('Configuración email')
