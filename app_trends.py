@@ -12,7 +12,7 @@ frecuenciaEmail = st.number_input('Frecuencia email (minutos)', 120)
 emails = st.text_area('emails de destino (uno por línea)')
 lista_emails = emails.split('\n')
 email_remitente = st.text_input('email del remitente')
-password_email_remitente = st.text_input('Contraseña email remitente', type='password')
+#password_email_remitente = st.text_input('Contraseña email remitente', type='password')
 
 with st.beta_expander('En caso de error al enviar el email', expanded=False):
   st.write("""
