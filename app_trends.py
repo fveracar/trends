@@ -11,19 +11,6 @@ st.header('Configuración email')
 frecuenciaEmail = st.number_input('Frecuencia email (minutos)', 120)
 emails = st.text_area('emails de destino (uno por línea)')
 lista_emails = emails.split('\n')
-#email_remitente = st.text_input('email del remitente')
-#password_email_remitente = st.text_input('Contraseña email remitente', type='password')
-
-with st.beta_expander('En caso de error al enviar el email', expanded=False):
-  st.write("""
-  En caso de error al enviar el email es posible que sea debido a que 
-  Google no permitirá el inicio de sesión a través de smtplib 
-  porque has marcado este tipo de inicio de sesión como "menos seguro".
-  Para solucionar este problema, 
-  ve a https://www.google.com/settings/security/lesssecureapps mientras estés conectado a tu cuenta de Google 
-  y a "Permitir aplicaciones menos seguras". Adjunto captura a continuación
-  """)
-  st.image('https://cms-assets.tutsplus.com/uploads/users/1885/posts/29975/image/secure_apps.png')
 
 def trends():
   st.header('Configuración consultas')
