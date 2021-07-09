@@ -105,7 +105,7 @@ def trends():
   recipients = lista_emails
   emaillist = [elem.strip().split(',') for elem in recipients]
   msg = MIMEMultipart()
-  msg['Subject'] = 'Tendencias - share streamlit'
+  msg['Subject'] = 'Tendencias - app dinámica'
   msg['From'] = email_remitente
   password = password_email_remitente
 
@@ -136,7 +136,6 @@ def trends():
   server.starttls()
   server.login(msg['From'], password)
   server.sendmail(msg['From'], emaillist , msg.as_string())
-  print('Fin')
 
 trends()
 
