@@ -3,6 +3,10 @@ import pandas as pd
 import time
 import streamlit as st
 
+st.set_page_config(
+    page_title='Trends | Vocento',
+)
+
 st.header('Configuración email')
 frecuenciaEmail = st.number_input('Frecuencia email (minutos)', 120)
 emails = st.text_area('emails de destino (uno por línea)')
