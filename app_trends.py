@@ -1,7 +1,5 @@
 from pytrends.request import TrendReq
 import pandas as pd
-import gspread as gs
-import schedule
 import time
 import streamlit as st
 
