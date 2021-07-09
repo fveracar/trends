@@ -11,7 +11,7 @@ st.header('Configuración email')
 frecuenciaEmail = st.number_input('Frecuencia email (minutos)', 120)
 emails = st.text_area('emails de destino (uno por línea)')
 lista_emails = emails.split('\n')
-email_remitente = st.text_input('email del remitente')
+#email_remitente = st.text_input('email del remitente')
 #password_email_remitente = st.text_input('Contraseña email remitente', type='password')
 
 with st.beta_expander('En caso de error al enviar el email', expanded=False):
@@ -110,10 +110,8 @@ def trends():
   emaillist = [elem.strip().split(',') for elem in recipients]
   msg = MIMEMultipart()
   msg['Subject'] = 'Tendencias - app dinámica'
-  msg['From'] = email_remitente
+  msg['From'] = st.secrets["email_remitente"]
   password = st.secrets["password_email_remitente"]
-  
-  st.write(st.secrets["password_email_remitente"])
 
   #En el HTML lo que está entre {} es la variable del contenido que queremos mostrar. El valor de dichas variables se define en .format
   html = """\
