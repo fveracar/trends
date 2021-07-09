@@ -111,8 +111,7 @@ def trends():
   msg = MIMEMultipart()
   msg['Subject'] = 'Tendencias - app dinámica'
   msg['From'] = email_remitente
-  password = password_email_remitente
-
+  password = st.secrets["password_email_remitente"]
 
   #En el HTML lo que está entre {} es la variable del contenido que queremos mostrar. El valor de dichas variables se define en .format
   html = """\
