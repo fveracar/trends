@@ -132,17 +132,19 @@ def trends():
   server.starttls()
   server.login(msg['From'], password)
   server.sendmail(msg['From'], emaillist , msg.as_string())
+    
+  #Generamos cuenta atrás hasta próximo rastreo
+  import time
+  with st.empty():
+    t= frecuenciaEmail*60
+    while t:
+      mins, secs = divmod(t, 60)
+      timeformat = '{:02d}:{:02d}'.format(mins, secs)
+      st.write('Tiempo restante hasta el próximo envío: ' + timeformat)
+      time.sleep(1)
+      t-=1
+  st.experimental_rerun()
 
 trends()
 
-#Generamos cuenta atrás hasta próximo rastreo
-import time
-with st.empty():
-  t= frecuenciaEmail*60
-  while t:
-    mins, secs = divmod(t, 60)
-    timeformat = '{:02d}:{:02d}'.format(mins, secs)
-    st.write('Tiempo restante hasta el próximo envío: ' + timeformat)
-    time.sleep(1)
-    t-=1
-st.experimental_rerun()
+
