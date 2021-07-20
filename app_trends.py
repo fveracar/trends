@@ -8,15 +8,14 @@ st.set_page_config(
 )
 
 
-#with st.form(key='my_form'):
-st.header('Configuración email')
-frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
-emails = st.text_area('emails de destino (uno por línea)')
-asunto = st.text_input('asunto del email',value='Tendencias - app dinámica')
-lista_emails = emails.split('\n')
-
 
 def trends():
+  #with st.form(key='my_form'):
+  st.header('Configuración email')
+  frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
+  emails = st.text_area('emails de destino (uno por línea)')
+  asunto = st.text_input('asunto del email',value='Tendencias - app dinámica')
+  lista_emails = emails.split('\n')
   st.header('Configuración consultas')
   aumentoPuntual = st.number_input('Filtro Aumento Puntual', value=1500)
   lista_geolocalizacion = ["ES", "ES-AN", "ES-AR", "ES-AS", "ES-CN", "ES-CB", "ES-CM", "ES-CL", "ES-CT", "ES-EX", "ES-GA", "ES-IB", "ES-RI", "ES-MD", "ES-MC", "ES-NC", "ES-PV", "ES-V"]
