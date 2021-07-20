@@ -24,7 +24,10 @@ def trends():
   lista_intervaloTiempo = ["today 3-m", "today 2-m", "today 1-m", "now 7-d", "now 1-d", "now 1-H", "now 4-H"]
   intervaloTiempo = st.selectbox('Selecciona el intervalo de tiempo', lista_intervaloTiempo, index=6)
   st.header('Consultas')
-  consultas = st.text_area('Introduce una consulta por línea') #Creamos el text area en el sidebar
+
+  with st.form(key='my_form'):
+    consultas = st.text_area('Introduce una consulta por línea') #Creamos el text area en el sidebar
+    submit_button = st.form_submit_button(label='Iniciar')
 
 
   #si el text area está vacío paramos el código
