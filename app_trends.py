@@ -10,21 +10,19 @@ st.set_page_config(
 
 
 def trends():
-  #with st.form(key='my_form'):
-  st.header('Configuración email')
-  frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
-  emails = st.text_area('emails de destino (uno por línea)')
-  asunto = st.text_input('asunto del email',value='Tendencias - app dinámica')
-  lista_emails = emails.split('\n')
-  st.header('Configuración consultas')
-  aumentoPuntual = st.number_input('Filtro Aumento Puntual', value=1500)
-  lista_geolocalizacion = ["ES", "ES-AN", "ES-AR", "ES-AS", "ES-CN", "ES-CB", "ES-CM", "ES-CL", "ES-CT", "ES-EX", "ES-GA", "ES-IB", "ES-RI", "ES-MD", "ES-MC", "ES-NC", "ES-PV", "ES-V"]
-  geolocalizacion = st.selectbox('Selecciona ubicación', lista_geolocalizacion,index=0)
-  lista_intervaloTiempo = ["today 3-m", "today 2-m", "today 1-m", "now 7-d", "now 1-d", "now 1-H", "now 4-H"]
-  intervaloTiempo = st.selectbox('Selecciona el intervalo de tiempo', lista_intervaloTiempo, index=6)
-  st.header('Consultas')
-
   with st.form(key='my_form'):
+    st.header('Configuración email')
+    frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
+    emails = st.text_area('emails de destino (uno por línea)')
+    asunto = st.text_input('asunto del email',value='Tendencias - app dinámica')
+    lista_emails = emails.split('\n')
+    st.header('Configuración consultas')
+    aumentoPuntual = st.number_input('Filtro Aumento Puntual', value=1500)
+    lista_geolocalizacion = ["ES", "ES-AN", "ES-AR", "ES-AS", "ES-CN", "ES-CB", "ES-CM", "ES-CL", "ES-CT", "ES-EX", "ES-GA", "ES-IB", "ES-RI", "ES-MD", "ES-MC", "ES-NC", "ES-PV", "ES-V"]
+    geolocalizacion = st.selectbox('Selecciona ubicación', lista_geolocalizacion,index=0)
+    lista_intervaloTiempo = ["today 3-m", "today 2-m", "today 1-m", "now 7-d", "now 1-d", "now 1-H", "now 4-H"]
+    intervaloTiempo = st.selectbox('Selecciona el intervalo de tiempo', lista_intervaloTiempo, index=6)
+    st.header('Consultas')
     consultas = st.text_area('Introduce una consulta por línea') #Creamos el text area en el sidebar
     submit_button = st.form_submit_button(label='Iniciar')
 
