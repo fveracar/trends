@@ -10,6 +10,7 @@ st.set_page_config(
 st.header('Configuración email')
 frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
 emails = st.text_area('emails de destino (uno por línea)')
+asunto = st.text_input('asunto del email',value='Tendencias - app dinámica')
 lista_emails = emails.split('\n')
 
 def trends():
@@ -96,7 +97,7 @@ def trends():
   recipients = lista_emails
   emaillist = [elem.strip().split(',') for elem in recipients]
   msg = MIMEMultipart()
-  msg['Subject'] = 'Tendencias - app dinámica'
+  msg['Subject'] = asunto
   msg['From'] = st.secrets["email_remitente"]
   password = st.secrets["password_email_remitente"]
 
