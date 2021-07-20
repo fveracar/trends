@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 st.header('Configuración email')
-frecuenciaEmail = st.number_input('Frecuencia email (minutos)', 120)
+frecuenciaEmail = st.number_input('Frecuencia email (minutos)',value=120)
 emails = st.text_area('emails de destino (uno por línea)')
 lista_emails = emails.split('\n')
 
