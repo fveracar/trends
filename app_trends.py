@@ -54,7 +54,8 @@ def trends():
   st.header('Lista de consultas realizadas')
   st.write(txt)
 
-  dfFinalDividir = []
+  #creamos una lista vacia para añadir posteriormente todos los dataframes con los resultados de cada término consultado en google trends
+  listaFinal = []
 
   for j in range (len(kw_list)):
 
@@ -73,21 +74,23 @@ def trends():
         dfRisingClear = dfRising.drop(dfRising[dfRising['value']<aumentoPuntual].index)
       else:
         dfRisingClear = pd.DataFrame(columns=['query','value'])
-        #dfRisingClear = "No hay resultados"
 
-      consulta = []
+      #para dividir estéticamente las tablas por consulta      
+      dfRisingClear.insert(0,'Término', "",True) #añadimos columna "Consulta"
+      dfRisingClear.columns = ['Término', 'Consultas relacionadas', 'Aumento puntual'] #renombramos las columnas del dataframe
+      dfRisingClear.loc[-1]=[kw_list[j],"",""] #añadimos el término que estamos consultando a la primera columna 
+      dfRisingClear.index = dfRisingClear.index + 1 #sumamos uno al indice
+      dfRisingClear = dfRisingClear.sort_index() #reordenamos el indice para que el término que estamos consultando aparezca el primero
 
-      for i in range (len(dfRisingClear)):
-        consulta.append(kw_lists[j])
+      #si el dataframe está vacío no lo añadimos al dataframe final.
+      if len(dfRisingClear) > 1:
+        listaFinal.append(dfRisingClear)
 
-      dfRisingClear.insert(0,'Consulta', consulta,True)
-
-      dfFinalDividir.append(dfRisingClear)
-
-  dfConcatenados = pd.concat(dfFinalDividir,axis=0, ignore_index=True)
-
-  st.header('Último Resultado')
-  st.dataframe(dfConcatenados)
+  #Si listaFinal está vacío creamos el dataframe dfConcatenados vacío, si no concatenamos en un dataframe todos los df almacenados en la lista
+  if len(listaFinal) > 0:
+    dfConcatenados = pd.concat(listaFinal,axis=0, ignore_index=True)#concatenamos en un Dataframe todos los dataframe añadidos a la lista listaFinal
+  else:
+    dfConcatenados = pd.DataFrame()
 
   #Enviamos los resultados en un email
   from email.mime.text import MIMEText
@@ -120,7 +123,7 @@ def trends():
     </body>
   </html>
   """.format(kw_list=txt, 
-            dfResultado=dfConcatenados.to_html(index=False),
+            dfResultado=dfConcatenados.to_html(index=False, border=0, justify='left'),
             )
 
   part1 = MIMEText(html, 'html')
@@ -130,6 +133,8 @@ def trends():
   server.starttls()
   server.login(msg['From'], password)
   server.sendmail(msg['From'], emaillist , msg.as_string())
+
+  st.text('Email enviado')
     
   #Generamos cuenta atrás hasta próximo rastreo
   import time
@@ -144,5 +149,3 @@ def trends():
   st.experimental_rerun()
 
 trends()
-
-
